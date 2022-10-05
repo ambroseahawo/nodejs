@@ -9,11 +9,16 @@ fs.readFile(path.join(__dirname, "files", "starter.txt"), "utf-8", (err, data) =
 fs.writeFile(path.join(__dirname, "files", "reply.txt"), "Sample write data", (err) =>{
   if(err) throw err
   console.log("Write completed")
-})
 
-fs.appendFile(path.join(__dirname, "files", "test.txt"), "Sample write data", (err) =>{
-  if(err) throw err
-  console.log("Append completed")
+  fs.appendFile(path.join(__dirname, "files", "reply.txt"), "\n\nSample append data", (err) => {
+    if (err) throw err
+    console.log("Append completed")
+
+    fs.rename(path.join(__dirname, "files", "reply.txt"), path.join(__dirname, "files", "newReply.txt"), (err) => {
+      if (err) throw err
+      console.log("Rename completed")
+    })
+  })
 })
 
 // exit on uncaught errors
